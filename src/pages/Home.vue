@@ -1,4 +1,4 @@
-<template>
+<template xmlns:colunm="http://www.w3.org/1999/xhtml">
     <div ref="view_body" style="width: 100%; background-color: aquamarine;"
          class="km-ll km-ll-v">
 
@@ -12,9 +12,9 @@
             <div ref="view_left" class="km-ll km-ll-v "
                  style="width: 55%;height: 100%;padding: 10px">
                 <!-- left1 -->
-                <div style=" height: 40%;" class="km-holdsize"
+                <div class="km-holdsize"
                      ref="view_ad_left1">
-                    <mt-swipe :auto="4000" style="height: 100%" :show-indicators="false">
+                    <mt-swipe :auto="3000" style="height: 100%" :show-indicators="false">
 
                         <mt-swipe-item v-for="(item,index) in p_ads" :key="index"
                                        style="height: 100%">
@@ -31,9 +31,9 @@
                 <div class="km-w1"></div>
 
                 <!-- left2 -->
-                <div style=" height: 40%;" class="km-holdsize"
+                <div class="km-holdsize"
                      ref="view_ad_left2">
-                    <mt-swipe :auto="4000" style="height: 100%" :show-indicators="false">
+                    <mt-swipe :auto="10000" style="height: 100%" :show-indicators="false">
 
                         <mt-swipe-item v-for="(item,index) in p_ads" :key="index"
                                        style="height: 100%">
@@ -53,19 +53,44 @@
 
 
                 <!-- right1 -->
-                <div style=" height: 40%;" class="km-holdsize"
+                <div class="km-holdsize"
                      ref="view_ad_right1">
 
-                    <div style="background-color: chartreuse; height: 100%"></div>
+                    <div class="view_table km-ll km-ll-v" style="height: 100%">
+                        <!-- TODO -->
+                        <div style="background-color: dimgray; color: white" align="center">
+                            快检信息公视栏
+                        </div>
+                        <table class="km-full">
+                            <thead>
+                            <tr>
+                                <th v-for="col in column">{{col.title}}</th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <div class="table_content km-w1" style="overflow-y: scroll; ">
+                            <table class="table_scroll">
+                                <tbody>
+                                <tr align="center" v-for="data in tableData">
+                                    <td>{{data.name}}</td>
+                                    <td>{{data.unitName}}</td>
+                                    <td>{{data.obj}}</td>
+                                    <td>{{data.result}}</td>
+                                    <td>{{data.failed}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                 </div>
 
                 <div class="km-w1"></div>
 
                 <!-- right2 -->
-                <div style=" height: 40%;" class="km-holdsize"
+                <div class="km-holdsize"
                      ref="view_ad_right2">
-                    <mt-swipe :auto="4000" style="height: 100%" :show-indicators="false">
+                    <mt-swipe :auto="8000" style="height: 100%" :show-indicators="false">
 
                         <mt-swipe-item v-for="(item,index) in p_ads" :key="index"
                                        style="height: 100%">
@@ -85,12 +110,12 @@
         <!--footer-->
         <div style="height: 30px;"></div>
 
-
     </div>
 
 </template>
 
 <script>
+
     import Vue from 'vue'
     import {Swipe, SwipeItem} from 'mint-ui'
 
@@ -119,6 +144,151 @@
                 ],
 
                 p_indicatorCount: 0,//打开indicator的次数
+                // '样品名称', '被抽样单位名称', '检测项目', '检测结果', '不合格产品处理情况'
+                column: [
+                    {
+                        title: '样品名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '被抽样单位名称',
+                        key: 'unitName'
+                    },
+                    {
+                        title: '检测项目',
+                        key: 'obj'
+                    },
+                    {
+                        title: '检测结果',
+                        key: 'result'
+                    },
+                    {
+                        title: '不合格产品处理情况',
+                        key: 'failed'
+                    }
+                ],
+
+                tableData: [
+                    {
+                        name: '梨',
+                        unitName: 'A-03,04',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '苹果',
+                        unitName: 'A-03,04',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '普通白菜',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '菜心',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '结球莴苣',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '油麦菜',
+                        unitName: 'F-33',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '普通白菜',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '普通白菜',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '普通白菜',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '普通白菜',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '结球莴苣',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '结球莴苣',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    }, {
+                        name: '结球莴苣',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '菜心',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '菜心',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '菜心',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    },
+                    {
+                        name: '菜心',
+                        unitName: 'F-21',
+                        obj: '农药残留',
+                        result: '合格',
+                        failed: '/'
+                    }
+                ]
+
 
             }
         },
@@ -128,7 +298,7 @@
 
             this.$refs.view_left.style.height = this.$refs.view_content.clientHeight + "px";
 
-            this.$refs.view_ad_left1.style.height = (parseInt(this.$refs.view_ad_left1.clientWidth) * (1.55 / 4)) + "px";
+            this.$refs.view_ad_left1.style.height = (parseInt(this.$refs.view_ad_left1.clientWidth) * (1.6 / 4)) + "px";
 
             this.$refs.view_ad_left2.style.height = (parseInt(this.$refs.view_ad_left2.clientWidth) * (2 / 4)) + "px";
 
@@ -203,4 +373,61 @@
     /deep/ .mint-header-button {
         height: 100%;
     }
+
+    .view_table {
+        background-color: bisque;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    table thead {
+        display: block;
+        background-color: #333333;
+        color: #fdfdfd;
+    }
+
+    table thead {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .table_content {
+        height: 100%;
+    }
+
+    tbody {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    td {
+        height: 40px;
+    }
+
+    .table_content .table_scroll {
+        /* Starting position */
+        transform: translateY(100%);
+        /* Apply animation to this element */
+        animation: table_content 30s linear infinite;
+    }
+
+    @-webkit-keyframes table_content {
+        0% {
+            -webkit-transform: translateY(0%);
+        }
+        100% {
+            -webkit-transform: translateY(-100%);
+        }
+    }
+
+    /*去掉滚动栏*/
+    .view_table ::-webkit-scrollbar {
+        display: none;
+    }
+
+
 </style>
